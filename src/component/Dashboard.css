@@ -1,0 +1,150 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background-color: #161d32;
+    
+}
+
+@media (min-width:819px){
+    .main .content .dashbord{
+        display: none;
+    }
+    .main{
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+    
+    }
+    .main .sidebar{
+        background-color: #283046;
+        height: 85%;
+        width: 13%;
+        color: white;
+    }
+    .main .sidebar .logo{
+        height: 10%;
+    }
+    .main .sidebar .dashbord{
+        border-radius: 5px;
+    }
+    .dashbord{
+        background-color: #6059c6;
+    }
+    .main .sidebar div{
+        display: flex;
+        align-items: center;
+        height: 7%;
+        width: 92%;
+        cursor: pointer;
+        padding-left: 5px;
+    }
+    .main .sidebar div:hover{
+        background-color: #343b4c;
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        margin: 1% 1% 1% 1%;
+        width: 100vw;
+    }
+    .headbar{
+        background-color: #283046;
+        height: 20%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        color: white;
+        padding-left: 2rem;
+        padding-top: 5px;
+        
+    }
+    .table{
+        background-color: #283046;
+        margin-top: 1%;
+        height: 81%;
+        
+    }
+    .date-range-picker{
+        position: absolute;
+        z-index: 99;
+    }
+
+}
+@media (max-width:821px){
+    .main .content .dashbord{
+        display: block;
+        color: white;
+        background-color: #6059c6;
+    }
+    .main{
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+    
+    }
+    .main .sidebar{
+        background-color: #283046;
+        height: 85%;
+        width: 13%;
+        color: white;
+    }
+    .main .sidebar .logo{
+        height: 10%;
+    }
+    .main .sidebar .dashbord{
+        border-radius: 5px;
+    }
+    .dashbord{
+        background-color: #6059c6;
+    }
+    .main .sidebar div{
+        display: flex;
+        align-items: center;
+        height: 7%;
+        width: 92%;
+        cursor: pointer;
+        padding-left: 5px;
+    }
+    .main .sidebar div:hover{
+        background-color: #343b4c;
+    }
+    
+    .content{
+        display: flex;
+        flex-direction: column;
+        margin: 1% 1% 1% 1%;
+        width: 100vw;
+    }
+    .headbar{
+        background-color: #283046;
+        height: 20%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        color: white;
+        padding-left: 1rem;
+        padding-top: 5px;
+        font-size: 0.8rem;
+        margin-top: 1%;
+        
+    }
+    .table{
+        background-color: #283046;
+        margin-top: 1%;
+        height: 100%;
+        
+    }
+    .main .sidebar{
+        display: none;
+    }
+    .main .sidebar div {
+        display: none;
+    }
+    .date-range-picker{
+        position: absolute;
+        z-index: 99;
+    }
+    .pagination{
+        background-color: white;
+    }
+}
