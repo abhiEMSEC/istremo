@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/istremo/static/css/main.f00fe9a4.css",
-    "main.js": "/istremo/static/js/main.9a6f7c85.js",
+    "main.js": "/istremo/static/js/main.43eb4917.js",
     "static/js/787.58230c94.chunk.js": "/istremo/static/js/787.58230c94.chunk.js",
     "index.html": "/istremo/index.html",
     "main.f00fe9a4.css.map": "/istremo/static/css/main.f00fe9a4.css.map",
-    "main.9a6f7c85.js.map": "/istremo/static/js/main.9a6f7c85.js.map",
+    "main.43eb4917.js.map": "/istremo/static/js/main.43eb4917.js.map",
     "787.58230c94.chunk.js.map": "/istremo/static/js/787.58230c94.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f00fe9a4.css",
-    "static/js/main.9a6f7c85.js"
+    "static/js/main.43eb4917.js"
   ]
 }
