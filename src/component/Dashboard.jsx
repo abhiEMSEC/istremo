@@ -61,29 +61,35 @@ const Dashboard = () => {
     const [filterdata, setfilterdata] = useState([])
     const [calender, setcalender] = useState(false)
 
+    const [formatstartdate, setformatstartdate] = useState("2022-04-01");
+    const [formatenddate, setformatenddate] = useState("2022-08-24")
+
 
     async function fetchTopbar() {
-        const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticcount?fromdate=2022-04-01&todate=2022-08-24&page=1&limit=10 `);
+        const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticcount?fromdate=${formatstartdate}&todate=${formatenddate}&page=1&limit=10 `);
         const data = await response.json();
-        // console.log(data.data);
         setdata(data.data);
     }
     async function fetchtabledata() {
         const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=2022-04-01&todate=2022-08-24&page=${page}&limit=${pagelimit} `);
         const data = await response.json();
-        // console.log(data.data.data);
         settotalPages(data.data.pages)
         settabledata(data.data.data)
         setfilterdata(data.data.data)
     }
-    
+
 
     useEffect(() => {
         fetchTopbar();
         fetchtabledata();
-        setcalender(false)
+        setcalender(false);
+
     }, [page, pagelimit]);
 
+    useEffect(() => {
+        fetchTopbar()
+
+    }, [formatenddate, formatstartdate]);
 
 
     const handleChange = (event) => {
@@ -102,14 +108,27 @@ const Dashboard = () => {
             return (
                 productDate >= date.selection.startDate &&
                 productDate <= date.selection.endDate
-                
+
             )
         })
         setstartdate(date.selection.startDate);
         setenddate(date.selection.endDate)
         settabledata(filtered)
+        const year = startdate.getFullYear();
+        const month = String(startdate.getMonth() + 1).padStart(2, '0');
+        const day = String(startdate.getDate()).padStart(2, '0');
+        const formattedstartDate = `${year}-${month}-${day}`;
+        setformatstartdate(formattedstartDate)
+
+
+        const eyear = enddate.getFullYear();
+        const emonth = String(enddate.getMonth() + 1).padStart(2, '0');
+        const eday = String(enddate.getDate()).padStart(2, '0');
+        const formattedendDate = `${eyear}-${emonth}-${eday}`;
+        setformatstartdate(formattedendDate)
+
+
     }
-    console.log(filtered);
     const showcalender = () => {
         if (calender === false) {
             setcalender(true)
@@ -205,13 +224,13 @@ const Dashboard = () => {
 
                         <Button variant="contained" color="success" onClick={showcalender}
                             sx={{ marginTop: '1%', marginLeft: '1%' }}>
-                            Duration
+                            {formatstartdate} TO {formatenddate}
                         </Button>
                         {
                             calender &&
-                            
+
                             <DateRangePicker
-                            className='date-range-picker'
+                                className='date-range-picker'
                                 ranges={[selectionRange]}
                                 onChange={handleSelect}
                             />
@@ -223,7 +242,7 @@ const Dashboard = () => {
                                         <TableRow >
                                             {columns.map((column) => (
                                                 <TableCell
-                                                
+
                                                     key={column.id}
                                                     align={column.align}
                                                     style={{ minWidth: column.minWidth }}
@@ -257,7 +276,7 @@ const Dashboard = () => {
 
                         </Paper>
                         <Pagination
-                        className='pagination'
+                            className='pagination'
                             page={page}
                             size="large"
                             count={totalPages}
