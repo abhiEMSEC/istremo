@@ -70,6 +70,9 @@ body{
         position: absolute;
         z-index: 99;
     }
+    .navbar{
+        display: none;
+    }
 
 }
 @media (max-width:821px){
@@ -143,10 +146,12 @@ body{
         display: none;
     }
     .date-range-picker{
-        position: absolute;
         z-index: 99;
     }
     .pagination{
         background-color: white;
+    }
+    .navbar{
+        width: 100vw;
     }
 }

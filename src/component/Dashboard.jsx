@@ -32,7 +32,7 @@ import Select from '@mui/material/Select';
 
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { DateRangePicker } from 'react-date-range';
+import { DateRangePicker, DateRange } from 'react-date-range';
 
 
 const columns = [
@@ -161,6 +161,49 @@ const Dashboard = () => {
 
     return (
         <>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-success" >
+                <div className="container-fluid">
+                    <a className="navbar-brand" to="/">WOW</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <a className="nav-link active" aria-current="page" to="/"><DashboardIcon /> Dashboard</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" to="/add"><PersonIcon /> WOW User</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" to="/user"><VideocamIcon /> Video Clips</a>
+                            </li>
+
+                            <li className="nav-item">
+                                <a className="nav-link" to="/transfer"><ReportProblemIcon /> Reported  Content</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" to="/history"> <CategoryIcon /> Category</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" to="/history"> <InfoIcon /> Info Page</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" to="/history"> <QuestionAnswerIcon />FAQ</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" to="/history"><CircleNotificationsIcon />Push Notification</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" to="/history"><PersonAddIcon />Internal User</a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+
             <div className="main">
                 <div className="sidebar">
                     <div className='logo' >
@@ -195,9 +238,6 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="content">
-                    <div className='dashbord'>
-                        <DashboardIcon /> Dashboard
-                    </div>
                     <div className="headbar">
                         <div>
                             <DownloadIcon /> {data.totalInstall} <br /> App Installed
@@ -246,8 +286,7 @@ const Dashboard = () => {
                         {
                             calender &&
                             <>
-
-                                <DateRangePicker
+                                <DateRange
                                     className='date-range-picker'
                                     ranges={[selectionRange]}
                                     onChange={handleSelect}
