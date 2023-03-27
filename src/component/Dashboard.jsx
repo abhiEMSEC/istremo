@@ -68,11 +68,13 @@ const Dashboard = () => {
     async function fetchTopbar() {
         const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticcount?fromdate=${formatstartdate}&todate=${formatenddate}&page=1&limit=10 `);
         const data = await response.json();
+        // console.log(data.data);
         setdata(data.data);
     }
     async function fetchtabledata() {
-        const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=${formatstartdate}&todate=${formatenddate}&page=${page}&limit=${pagelimit} `);
+        const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=2022-04-01&todate=2022-08-24&page=${page}&limit=${pagelimit} `);
         const data = await response.json();
+        // console.log(data.data.data);
         settotalPages(data.data.pages)
         settabledata(data.data.data)
         setfilterdata(data.data.data)
@@ -82,15 +84,13 @@ const Dashboard = () => {
     useEffect(() => {
         fetchTopbar();
         fetchtabledata();
-        setcalender(false);
-
+        setcalender(false)
     }, [page, pagelimit]);
 
     useEffect(() => {
-        fetchTopbar()
-        fetchtabledata();
+        fetchTopbar();
+    }, [formatstartdate, formatenddate]);
 
-    }, [formatenddate, formatstartdate]);
 
 
     const handleChange = (event) => {
@@ -102,9 +102,25 @@ const Dashboard = () => {
         endDate: enddate,
         key: 'selection',
     }
-    let filtered
+
     const handleSelect = (date) => {
-        filtered = filterdata.filter((product) => {
+        const year = date.selection.startDate.getFullYear();
+        const month = String(date.selection.startDate.getMonth() + 1).padStart(2, '0');
+        const day = String(date.selection.startDate.getDate()).padStart(2, '0');
+        const formattedstartDate = `${year}-${month}-${day}`;
+        console.log(formattedstartDate);
+        setformatstartdate(formattedstartDate);
+
+        const endyear = date.selection.endDate.getFullYear();
+        const endmonth = String(date.selection.endDate.getMonth() + 1).padStart(2, '0');
+        const endday = String(date.selection.endDate.getDate()).padStart(2, '0');
+        const formattedendtDate = `${endyear}-${endmonth}-${endday}`;
+        console.log(formattedendtDate);
+        setformatenddate(formattedendtDate)
+        fetchTopbar();
+
+
+        let filtered = filterdata.filter((product) => {
             let productDate = new Date(product.created_At);  //createdAt
             return (
                 productDate >= date.selection.startDate &&
@@ -115,18 +131,19 @@ const Dashboard = () => {
         setstartdate(date.selection.startDate);
         setenddate(date.selection.endDate)
         settabledata(filtered)
-        const year = startdate.getFullYear();
-        const month = String(startdate.getMonth() + 1).padStart(2, '0');
-        const day = String(startdate.getDate()).padStart(2, '0');
-        const formattedstartDate = `${year}-${month}-${day}`;
-        setformatstartdate(formattedstartDate)
 
 
-        const eyear = enddate.getFullYear();
-        const emonth = String(enddate.getMonth() + 1).padStart(2, '0');
-        const eday = String(enddate.getDate()).padStart(2, '0');
-        const formattedendDate = `${eyear}-${emonth}-${eday}`;
-        setformatenddate(formattedendDate)
+        // const year = date.selection.startDate.getFullYear();
+        // const month = String(startdate.getMonth() + 1).padStart(2, '0');
+        // const day = String(startdate.getDate()).padStart(2, '0');
+        // const formattedstartDate = `${year}-${month}-${day}`;
+        // console.log(formattedstartDate);
+
+        // const eyear = date.selection.endDate.getFullYear();
+        // const emonth = String(enddate.getMonth() + 1).padStart(2, '0');
+        // const eday = String(enddate.getDate()).padStart(2, '0');
+        // const formattedendDate = `${eyear}-${emonth}-${eday}`;
+        // console.log(formattedendDate);
 
 
     }
@@ -136,7 +153,6 @@ const Dashboard = () => {
         }
         else {
             setcalender(false)
-            fetchtabledata();
         }
     }
 
@@ -216,25 +232,27 @@ const Dashboard = () => {
                                 label="Age"
                                 onChange={handleChange}
                             >
-                                <MenuItem value={10} >10 entries</MenuItem>
-                                <MenuItem value={50}>50 entries</MenuItem>
-                                <MenuItem value={500}>500 entries</MenuItem>
-                                <MenuItem value={1000}>1000 entries</MenuItem>
+                                <MenuItem value={10} >10 Entry</MenuItem>
+                                <MenuItem value={50}>50 Entry</MenuItem>
+                                <MenuItem value={500}>500 Entry</MenuItem>
+                                <MenuItem value={1000}>1000 Entry</MenuItem>
                             </Select>
                         </FormControl>
 
                         <Button variant="contained" color="success" onClick={showcalender}
                             sx={{ marginTop: '1%', marginLeft: '1%' }}>
-                            {formatstartdate} TO {formatenddate}
+                            From {formatstartdate} - TO {formatenddate}
                         </Button>
                         {
                             calender &&
+                            <>
 
-                            <DateRangePicker
-                                className='date-range-picker'
-                                ranges={[selectionRange]}
-                                onChange={handleSelect}
-                            />
+                                <DateRangePicker
+                                    className='date-range-picker'
+                                    ranges={[selectionRange]}
+                                    onChange={handleSelect}
+                                />
+                            </>
                         }
                         <Paper sx={{ width: '100%', overflow: 'hidden', backgroundColor: '#283046' }}>
                             <TableContainer sx={{ maxHeight: 450 }}>

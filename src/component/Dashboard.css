@@ -57,8 +57,7 @@ body{
         color: white;
         padding-left: 2rem;
         padding-top: 5px;
-        padding-bottom: 10px;
-        border-radius: 5px;
+        padding-bottom: 5px;
         
     }
     .table{
@@ -128,6 +127,7 @@ body{
         padding-top: 5px;
         font-size: 0.8rem;
         margin-top: 1%;
+        padding-bottom: 5px;
         
     }
     .table{
