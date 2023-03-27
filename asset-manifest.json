@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/istremo/static/css/main.14607ad4.css",
+    "main.js": "/istremo/static/js/main.9c1a06d7.js",
+    "static/js/787.58230c94.chunk.js": "/istremo/static/js/787.58230c94.chunk.js",
+    "index.html": "/istremo/index.html",
+    "main.14607ad4.css.map": "/istremo/static/css/main.14607ad4.css.map",
+    "main.9c1a06d7.js.map": "/istremo/static/js/main.9c1a06d7.js.map",
+    "787.58230c94.chunk.js.map": "/istremo/static/js/787.58230c94.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14607ad4.css",
+    "static/js/main.9c1a06d7.js"
+  ]
+}
