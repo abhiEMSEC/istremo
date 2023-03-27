@@ -38,9 +38,9 @@ import { DateRangePicker, DateRange } from 'react-date-range';
 const columns = [
     { id: "Date", label: "Date" },
     { id: "Day Installs", label: "Day Installs" },
-    { id: "Plateform", label: "Plateform" },
+    { id: "Platform", label: "Platform" },
     { id: "Day Uninstalls", label: "Day Uninstalls" },
-    { id: "Plateform", label: "Plateform" },
+    { id: "Platform", label: "Platform" },
     { id: "Churn Rate", label: "Churn Rate" },
     { id: "Churn Plateform", label: "Churn Plateform" }
 ];
