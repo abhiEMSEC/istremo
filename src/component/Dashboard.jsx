@@ -71,7 +71,7 @@ const Dashboard = () => {
         setdata(data.data);
     }
     async function fetchtabledata() {
-        const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=2022-04-01&todate=2022-08-24&page=${page}&limit=${pagelimit} `);
+        const response = await fetch(`https://admindevapi.wowtalent.live/api/admin/dashboard/installstatasticlist?fromdate=${formatstartdate}&todate=${formatenddate}&page=${page}&limit=${pagelimit} `);
         const data = await response.json();
         settotalPages(data.data.pages)
         settabledata(data.data.data)
@@ -88,6 +88,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         fetchTopbar()
+        fetchtabledata();
 
     }, [formatenddate, formatstartdate]);
 
@@ -125,7 +126,7 @@ const Dashboard = () => {
         const emonth = String(enddate.getMonth() + 1).padStart(2, '0');
         const eday = String(enddate.getDate()).padStart(2, '0');
         const formattedendDate = `${eyear}-${emonth}-${eday}`;
-        setformatstartdate(formattedendDate)
+        setformatenddate(formattedendDate)
 
 
     }
@@ -215,10 +216,10 @@ const Dashboard = () => {
                                 label="Age"
                                 onChange={handleChange}
                             >
-                                <MenuItem value={10} >10 Entry</MenuItem>
-                                <MenuItem value={50}>50 Entry</MenuItem>
-                                <MenuItem value={500}>500 Entry</MenuItem>
-                                <MenuItem value={1000}>1000 Entry</MenuItem>
+                                <MenuItem value={10} >10 entries</MenuItem>
+                                <MenuItem value={50}>50 entries</MenuItem>
+                                <MenuItem value={500}>500 entries</MenuItem>
+                                <MenuItem value={1000}>1000 entries</MenuItem>
                             </Select>
                         </FormControl>
 
